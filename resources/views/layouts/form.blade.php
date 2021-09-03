@@ -20,7 +20,7 @@
             <div class="col-5">
                 <input value="{{ old('name', isset($user) ? $user->name :null)}}" name="name" type="text" class="form-control" placeholder="name" aria-label="name">
                 @error("name")
-                    <div class="alert alert-danger">{{$message}}</div>
+                    <div class="alert alert-danger">{{$message}}</div> 
                 @enderror
             </div>
            
