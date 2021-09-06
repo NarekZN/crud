@@ -15,10 +15,16 @@ use App\Http\Controllers\ProductController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layouts/layout');
 });
 //   Auth::routes();
 
 //   Route::redirect("/","products");
-  Route::resource("/", ProductController::class);
+//   Route::resource("products", ProductController::class);
+
+  Route::resources([
+    '/' => ProductController::class,
+    'product' => ProductController::class,
+    // 'create' => ProductController::class,
+]);
  

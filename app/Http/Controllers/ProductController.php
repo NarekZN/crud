@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Http\Requests\ProductRequest;
 
 
 class ProductController extends Controller
@@ -35,7 +36,7 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
         
          Product::create($request->only("product","price"));
@@ -50,7 +51,6 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        dd("fgfg");
          return view("layouts/show" , compact("product"));
     }
 
@@ -73,7 +73,7 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(ProductRequest $request, Product $product)
     {
         $product->update($request->only(["product","price"]));
         return redirect()->route("index")->withSuccess("Updated product" ." ". $product->product);
@@ -87,8 +87,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        dd($product);
         $product->delete();
-        return redirect()->route("index")->withDanger("Deleted product" ." ". $product->product);
+        return redirect()->route("product.index")->withDanger("Deleted product" ." ". $product->product);
     }
 }

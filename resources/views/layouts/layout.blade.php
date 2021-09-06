@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}" />
+        
         <title> @yield("title") </title>
 
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -14,24 +15,22 @@
         </style>
 
         <style>
-            body {
-                font-family: 'Nunito', sans-serif;
-            }
+            body {font-family: 'Nunito', sans-serif;}
         </style>
     </head>
     <body>
             @yield("navbar")
         <div class="container">
             <h1> @yield("title") </h1>
-        <main>
-            @if(session("success"))
-                <div class="alert alert-success">{{session("success")}}</div>
-            @endif   
-            @if(session("danger"))
-                <div class="alert alert-danger">{{session("danger")}}</div>
-            @endif   
-            @yield("content")
-        </main>
+            <main>
+                @if(session("success"))
+                    <div class="alert alert-success">{{session("success")}}</div>
+                @endif   
+                @if(session("danger"))
+                    <div class="alert alert-danger">{{session("danger")}}</div>
+                @endif   
+                @yield("content")
+            </main>
         </div>
     </body>
     <script src="https://kit.fontawesome.com/82aa21cb95.js" crossorigin="anonymous"></script>

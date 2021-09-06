@@ -6,9 +6,9 @@
     <a class="btn btn-secondary mb-3" href="{{route('index')}}" role="button">Back</a>
     <form method="POST"
         @if(isset($product)))
-            action="{{route('update', $product)}}" 
+            action="{{route('product.update', $product)}}" 
         @else
-            action="{{route('store')}}"
+            action="{{route('product.store')}}"
         @endif   
         >
             @csrf
@@ -26,7 +26,9 @@
            
             <div class="col-5">
                 <input value="{{ old('price', isset($product) ? $product->price :null)}}" name="price" type="number" class="form-control mt-2" placeholder="price" aria-label="price">
-               
+                @error("price")
+                    <div class="alert alert-danger">{{$message}}</div>
+                 @enderror
             </div>
         </div>
         <button type="submit" class="btn btn-primary mt-3">{{isset($product) ? "Change product" :"Add product"}}</button>
