@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UsersController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,10 +17,8 @@ use App\Http\Controllers\UsersController;
 Route::get('/', function () {
     return view('welcome');
 });
+//   Auth::routes();
 
-Auth::routes();
-
-//  Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
- Route::redirect("/","users");
- Route::resource("/users", UsersController::class);
+//   Route::redirect("/","products");
+  Route::resource("/", ProductController::class);
+ 
