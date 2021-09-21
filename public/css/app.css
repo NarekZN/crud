@@ -10002,3 +10002,10 @@ h3 {
     border-color: #dee2e6;
   }
 }
+.col {
+  padding: 0;
+}
+
+.col-5 {
+  padding: 0;
+}

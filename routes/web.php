@@ -1,7 +1,11 @@
 <?php
 
+use App\Mail\MailtrapExample;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\TagController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,17 +18,34 @@ use App\Http\Controllers\ProductController;
 |
 */
 
-Route::get('/', function () {
-    return view('layouts/layout');
-});
-//   Auth::routes();
-
-//   Route::redirect("/","products");
-//   Route::resource("products", ProductController::class);
-
-  Route::resources([
-    '/' => ProductController::class,
-    'product' => ProductController::class,
-    // 'create' => ProductController::class,
+Route::resources([
+  'tag' => TagController::class,
+  'product' => ProductController::class,
 ]);
- 
+  
+Route::get('/send-mail', function () {
+
+  Mail::to('newuser@example.com')->send(new MailtrapExample());
+
+  return 'A message has been sent to Mailtrap!';
+
+});
+
+Route::get("/products", function(){
+  
+  if(Auth::check()){
+    return redirect(route("product.index"));
+  }
+  return redirect(route("login"));
+});
+
+Route::get("/", function(){
+   return redirect(route("login"));
+  
+});
+
+Auth::routes(["verify"=>true]);
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware("auth")->middleware("verified")->name('home');
+
+
