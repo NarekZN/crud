@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
-
-{{-- @extends("layouts/layout") --}}
 @auth
     @section("title","Tags")
 @endauth

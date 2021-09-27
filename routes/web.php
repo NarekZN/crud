@@ -5,7 +5,8 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TagController;
-
+use App\Http\Controllers\WeatherController;
+use App\Services\OpenWeather;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,7 @@ use App\Http\Controllers\TagController;
 Route::resources([
   'tag' => TagController::class,
   'product' => ProductController::class,
+  'weather' => WeatherController::class,
 ]);
   
 Route::get('/send-mail', function () {
@@ -47,5 +49,3 @@ Route::get("/", function(){
 Auth::routes(["verify"=>true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware("auth")->middleware("verified")->name('home');
-
-
