@@ -9,8 +9,7 @@ class OpenWeather implements Weather {
     
     public function __construct()
     {
-        $this->celsiusMeasurementUnit = config('weatherConfig.C');
-        $this->fahrenheitMeasurementUnit = config('weatherConfig.F');
+        $this->MeasurementUnit = config('weatherConfig.C');
         $this->api_key = config('weatherConfig.api_key');
        
     }
@@ -19,7 +18,7 @@ class OpenWeather implements Weather {
         try {
             $city = $param;
             $api_key = $this->api_key;
-            $measurementUnit = $this->celsiusMeasurementUnit;
+            $measurementUnit = $this->MeasurementUnit;
             $client = new \GuzzleHttp\Client();
             $response = $client->request('GET', "http://api.openweathermap.org/data/2.5/weather?q=". $city."&".$measurementUnit."&appid=".$api_key);
             $data = $response->getBody();
