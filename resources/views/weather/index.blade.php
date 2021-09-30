@@ -11,6 +11,10 @@
             </div>
         </div>
     </form>
-    {{$weather}}
+    
+    @isset($weather)
+        {{$weather}}
+    @endisset      
+   
     
 @endsection

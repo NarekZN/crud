@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Services\OpenWeather;
 use App\Contracts\Weather\Weather;
-
+use App\Facades\openWeatherFacade;
 
 class WeatherController extends Controller
 {
@@ -19,9 +18,10 @@ class WeatherController extends Controller
         return view("weather/index", compact("service"));
     }
 
-    public function store(Request $request, OpenWeather $weather)
+    public function store(Request $request)
     {
-        $weather = $weather->getWeatherInfo($request->Country);
+        $weather = openWeatherFacade::getWeatherInfo($request->Country);
         return  view("weather.index", compact("weather"));
+        
     }
 }
