@@ -1,9 +1,9 @@
 @extends("layouts/app")
 
-@section("title", isset($tag) ? "Update"." ".$tag->tag : "Create tag")
+@section("title", isset($tag) ? __("tags.update")." ".$tag->tag : __("tags.create_tag"))
 
 @section("content")
-    <a class="btn btn-secondary mb-3" href="{{route('tag.index')}}" role="button">Back</a>
+    <a class="btn btn-secondary mb-3" href="{{route('tag.index')}}" role="button">{{__("tags.back")}}</a>
     <form method="POST"
         @if(isset($tag))
             action="{{route('tag.update', $tag)}}" 
@@ -24,7 +24,7 @@
                 @enderror
             </div>
         </div>
-        <button type="submit" class="btn btn-primary mt-3">{{isset($tag) ? "Change tag" :"Add tag"}}</button>
+        <button type="submit" class="btn btn-primary mt-3">{{isset($tag) ? __("tags.change_tag") : __("tags.add_tag")}}</button>
     </form>  
     
 @endsection

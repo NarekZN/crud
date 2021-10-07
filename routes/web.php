@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\WeatherController;
-use App\Services\OpenWeather;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +24,9 @@ Route::resources([
   'product' => ProductController::class,
   'weather' => WeatherController::class,
 ]);
-  
+
+Route::get("locale/{locale}", [App\Http\Controllers\Controller::class, 'changeLocale'])->name("locale");
+
 Route::get('/send-mail', function () {
 
   Mail::to('newuser@example.com')->send(new MailtrapExample());

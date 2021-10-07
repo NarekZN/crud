@@ -9,7 +9,7 @@ use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProductRequest;
-
+use Illuminate\Support\Facades\App;
 
 class ProductController extends Controller
 {
@@ -112,4 +112,7 @@ class ProductController extends Controller
         $product->delete();
         return redirect()->route("product.index")->withDanger("Deleted product" ." ". $product->product);
     }
+
+    
+    
 }
