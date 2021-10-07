@@ -5,7 +5,8 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TagController;
-
+use App\Http\Controllers\WeatherController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,8 +22,11 @@ use App\Http\Controllers\TagController;
 Route::resources([
   'tag' => TagController::class,
   'product' => ProductController::class,
+  'weather' => WeatherController::class,
 ]);
-  
+
+Route::get("locale/{locale}", [App\Http\Controllers\Controller::class, 'changeLocale'])->name("locale");
+
 Route::get('/send-mail', function () {
 
   Mail::to('newuser@example.com')->send(new MailtrapExample());
@@ -47,5 +51,3 @@ Route::get("/", function(){
 Auth::routes(["verify"=>true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware("auth")->middleware("verified")->name('home');
-
-
